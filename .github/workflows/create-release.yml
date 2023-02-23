@@ -8,6 +8,7 @@ on:
 
 jobs:
   pre_release:
+     permissions: write-all
     runs-on: ubuntu-latest
     steps:
       - uses: hoangvvo/gitflow-workflow-action@0.1.0
