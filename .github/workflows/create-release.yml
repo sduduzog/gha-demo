@@ -6,14 +6,11 @@ on:
         required: true
         description: "Version to release"
 
-name: Create release
-
 jobs:
   pre_release:
     runs-on: ubuntu-latest
     steps:
-      - name: gitflow-workflow-action create release
-        uses: hoangvvo/gitflow-workflow-action
+      - uses: hoangvvo/gitflow-workflow-action@0.1.0
         with:
           develop_branch: "develop"
           main_branch: "main"
