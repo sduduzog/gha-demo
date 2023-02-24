@@ -23,9 +23,8 @@ jobs:
       with:
         command: start_finish
         tag: ${{ inputs.version }}
-        git_user: github-actions # Optional
+        git_user: github-actions
         git_email: github-actions@github.com # Optional
         main_branch: master # Optional
         develop_branch: develop # Optional
-        allow_empty_releases: false # Optional
-        ignore_commits_from_author: johndoe # Optional
+        allow_empty_releases: true
