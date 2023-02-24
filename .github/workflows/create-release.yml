@@ -1,0 +1,21 @@
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        type: string
+        required: true
+        description: "Version to release"
+
+permissions: write-all
+
+jobs:
+  pre_release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: hoangvvo/gitflow-workflow-action@0.1.0
+        with:
+          develop_branch: "develop"
+          main_branch: "main"
+          version: ${{ inputs.version }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
