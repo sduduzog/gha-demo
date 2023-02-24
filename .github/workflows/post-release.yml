@@ -5,9 +5,7 @@ on:
       - closed
       - labeled
 
-permissions:
-  contents: read
-  pull-requests: write
+permissions: write-all
 
 jobs:
   release_workflow:
