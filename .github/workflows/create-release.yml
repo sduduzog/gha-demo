@@ -6,7 +6,9 @@ on:
         required: true
         description: "Version to release"
 
-permissions: write-all
+permissions:
+  contents: read
+  pull-requests: write
 
 jobs:
   pre_release:
