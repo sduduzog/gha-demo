@@ -1,26 +1,31 @@
-name: Gitflow
-on: 
-  push:
-  pull_request_review:
-  check_run:
-    types: [completed]
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        type: string
+        required: true
+        description: "Version to release"
+# on: 
+  # push:
+  # pull_request_review:
+  # check_run:
+    # types: [completed]
 
 permissions:
   contents: read
   pull-requests: write
   
 jobs:
-  build:
-    name: Gitflow
-    runs-on: ubuntu-16.04
+  release:
+    runs-on: ubuntu-latest
     steps:
-    - uses: Logerfo/gitflow-action@0.0.5
+    - uses: HDBandit/gitflow-release-action@1.0.1
       with:
-        github-token: ${{ secrets.GITHUB_TOKEN }} # The `GITHUB_TOKEN` secret.
-        release: release # The `release` branch.
-        release-regex: ^release/(.*) # The regex for `release` branch.
-        dev: develop # The `dev` branch.
-        master: main # The `master` branch.
-        label: gitflow # The pull request label.
-        auto-merge: true # If `true`, will try to automatically merge pull requests. Can also be set to `pull_request_review`, `check_run`, `push`, or a comma-separated combination of these values to only merge when handling the named events.
-        require-merge: true # If an attempted merge fails, the action is considered to have failed.
+        command: start_finish
+        tag: ${{ inputs.version }}
+        git_user: github-actions # Optional
+        git_email: github-actions@github.com # Optional
+        main_branch: master # Optional
+        develop_branch: develop # Optional
+        allow_empty_releases: false # Optional
+        ignore_commits_from_author: johndoe # Optional
