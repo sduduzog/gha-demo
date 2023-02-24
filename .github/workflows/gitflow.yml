@@ -1,5 +1,7 @@
 on: 
   push:
+    branches:
+      - release/**
   pull_request_review:
   check_run:
     types: [completed]
