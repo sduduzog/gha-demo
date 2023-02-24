@@ -1,0 +1,30 @@
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        type: string
+        required: true
+        description: "Version to release"
+# on: 
+  # push:
+  # pull_request_review:
+  # check_run:
+    # types: [completed]
+
+permissions:
+  contents: read
+  pull-requests: write
+  
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: HDBandit/gitflow-release-action@1.0.1
+      with:
+        command: start_finish
+        tag: ${{ inputs.version }}
+        git_user: github-actions
+        git_email: github-actions@github.com # Optional
+        main_branch: master # Optional
+        develop_branch: develop # Optional
+        allow_empty_releases: true
