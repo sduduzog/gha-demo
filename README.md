@@ -1,3 +1,3 @@
 # gha-demo
 
-Seemed to get it working now
+Testing out automation now
