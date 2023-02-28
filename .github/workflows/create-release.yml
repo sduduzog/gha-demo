@@ -1,10 +1,5 @@
 on:
   workflow_dispatch:
-    inputs:
-      version:
-        type: string
-        required: true
-        description: "Version to release"
 
 permissions: write-all
 
@@ -12,10 +7,17 @@ jobs:
   pre_release:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
+      - id: semver
+        uses: ietf-tools/semver-action@v1
+        with:
+          token: ${{ github.token }}
+          branch: main
+
       - uses: hoangvvo/gitflow-workflow-action@0.1.0
         with:
           develop_branch: develop
           main_branch: main
-          version: ${{ inputs.version }}
+          version: ${{ steps.semver.outputs.next }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
