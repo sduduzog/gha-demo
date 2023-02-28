@@ -14,7 +14,7 @@ jobs:
           token: ${{ github.token }}
           branch: develop
 
-      - uses: hoangvvo/gitflow-workflow-action@0.1.0
+      - uses: hoangvvo/gitflow-workflow-action@0.2.4
         with:
           develop_branch: develop
           main_branch: main
